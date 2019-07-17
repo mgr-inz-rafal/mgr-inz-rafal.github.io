@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src\lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../swarm_it/index.html'><img src='../../rust-logo.png' alt='logo' width='100'></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src\lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../swarm_it/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -199,6 +199,24 @@
 <span id="199">199</span>
 <span id="200">200</span>
 <span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#[<span class="ident">macro_use</span>]</span>
 <span class="kw">mod</span> <span class="ident">macros</span>;
@@ -206,8 +224,9 @@
 <span class="kw">mod</span> <span class="ident">carrier</span>;
 <span class="kw">mod</span> <span class="ident">dispatcher</span>;
 <span class="kw">mod</span> <span class="ident">payload</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">position</span>;
+<span class="kw">mod</span> <span class="ident">position</span>;
 <span class="kw">mod</span> <span class="ident">slot</span>;
+<span class="kw">mod</span> <span class="ident">tools</span>;
 
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">hash</span>::<span class="ident">Hash</span>;
 
@@ -246,12 +265,17 @@
 ) {
     <span class="ident">slots</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>().<span class="ident">for_each</span>(<span class="op">|</span>(<span class="ident">i1</span>, <span class="kw">_</span>)<span class="op">|</span> {
         <span class="ident">slots</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>().<span class="ident">for_each</span>(<span class="op">|</span>(<span class="ident">i2</span>, <span class="kw">_</span>)<span class="op">|</span> {
-            <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;{}-&gt;{} = {}&quot;</span>, <span class="ident">i1</span>, <span class="ident">i2</span>, <span class="ident">dispatcher</span>.<span class="ident">get_slot_distance</span>(<span class="ident">i1</span>, <span class="ident">i2</span>));
+            <span class="macro">println</span><span class="macro">!</span>(
+                <span class="string">&quot;{}-&gt;{} = {}&quot;</span>,
+                <span class="ident">i1</span>,
+                <span class="ident">i2</span>,
+                <span class="ident">dispatcher</span>.<span class="ident">get_distance_slot_slot</span>(<span class="ident">i1</span>, <span class="ident">i2</span>)
+            );
         })
     });
 }
 
-<span class="comment">// Main struct that allow you to talk to the library</span>
+<span class="doccomment">/// Main struct that allow you to talk to the library</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Swarm</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PartialEq</span> <span class="op">+</span> <span class="ident">Eq</span> <span class="op">+</span> <span class="ident">Hash</span> <span class="op">+</span> <span class="ident">Copy</span><span class="op">&gt;</span> {
     <span class="ident">carriers</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Carrier</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span>,
@@ -281,7 +305,8 @@
         }
     }
 
-    <span class="doccomment">/// Adds new carrier</span>
+    <span class="doccomment">/// Adds new carrier.</span>
+    <span class="doccomment">/// Returns the index of the new carrier.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">///</span>
@@ -290,11 +315,12 @@
     <span class="doccomment">/// let mut game = Swarm::&lt;char&gt;::new();</span>
     <span class="doccomment">/// game.add_carrier(Carrier::new(100.0, 200.0));</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_carrier</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">carrier</span>: <span class="ident">Carrier</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {
-        <span class="ident">Swarm</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>::<span class="ident">add_object</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">carriers</span>, <span class="ident">carrier</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_carrier</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">carrier</span>: <span class="ident">Carrier</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+        <span class="ident">Swarm</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>::<span class="ident">add_object</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">carriers</span>, <span class="ident">carrier</span>)
     }
 
-    <span class="doccomment">/// Adds new slot</span>
+    <span class="doccomment">/// Adds new slot.</span>
+    <span class="doccomment">/// Returns the index of the new slot.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">///</span>
@@ -303,13 +329,22 @@
     <span class="doccomment">/// let mut game = Swarm::&lt;char&gt;::new();</span>
     <span class="doccomment">/// game.add_slot(Slot::new(100.0, 100.0, None, Some(Payload::new(&#39;X&#39;)), swarm_it::SlotKind::CLASSIC));</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_slot</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">slot</span>: <span class="ident">Slot</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {
-        <span class="ident">Swarm</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>::<span class="ident">add_object</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">slots</span>, <span class="ident">slot</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_slot</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">slot</span>: <span class="ident">Slot</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+        <span class="ident">Swarm</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>::<span class="ident">add_object</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">slots</span>, <span class="ident">slot</span>)
     }
 
     <span class="doccomment">/// Returns all carriers</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_carriers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Carrier</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span> {
         <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">carriers</span>
+    }
+
+    <span class="doccomment">/// Sets the acceleration of the specified carrier.</span>
+    <span class="doccomment">/// It sets the capability of how fast the carrier can accelerate,</span>
+    <span class="doccomment">/// it DOESN&#39;T affect current acceleration, as this is maintained by</span>
+    <span class="doccomment">/// the engine internals. Therefore if carrier is, for example, slowing down to</span>
+    <span class="doccomment">/// pickup the cargo, call to this function will interrupt this process.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_carrier_acceleration</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">acceleration</span>: <span class="ident">f64</span>) {
+        <span class="self">self</span>.<span class="ident">carriers</span>[<span class="ident">index</span>].<span class="ident">acceleration</span> <span class="op">=</span> <span class="ident">acceleration</span>;
     }
 
     <span class="doccomment">/// Returns all slots</span>
@@ -375,8 +410,9 @@
         <span class="self">self</span>.<span class="ident">dispatcher</span>.<span class="ident">precalc</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">slots</span>);
     }
 
-    <span class="kw">fn</span> <span class="ident">add_object</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>(<span class="ident">vec</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>, <span class="ident">obj</span>: <span class="ident">U</span>) {
+    <span class="kw">fn</span> <span class="ident">add_object</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>(<span class="ident">vec</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">U</span><span class="op">&gt;</span>, <span class="ident">obj</span>: <span class="ident">U</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
         <span class="ident">vec</span>.<span class="ident">push</span>(<span class="ident">obj</span>);
+        <span class="ident">vec</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">1</span>
     }
 
     <span class="kw">fn</span> <span class="ident">all_carriers_idle</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span> {
